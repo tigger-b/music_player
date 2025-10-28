@@ -1,0 +1,37 @@
+4
+Neil Diamond
+Greatest Hits
+NeilDiamond.png
+3
+Crackling Rose
+boing_x.wav
+Soolaimon
+06-Soolaimon.wav
+Sweet Caroline
+20-Sweet_Caroline.wav
+The Platters
+Greatest Hits
+ThePlatters.png
+2
+Twilight Time
+01-Twilight_Time.wav
+The Great Pretender
+10-The_Great_Pretender.wav
+Don McClean
+American Pie
+DonMcClean.png
+2
+American Pie
+01-American_Pie.wav
+Vincent
+02-Vincent.wav
+Carly Simon
+No Secrets
+CarlySimon.png
+3
+The Carter Family
+02-The_Carter_Family.wav
+Your So Vain
+03-Youre_So_Vain.wav
+Embrace Me You Child
+06-Embrace_Me_You_Child.wav
