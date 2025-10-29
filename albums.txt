@@ -1,37 +1,55 @@
 4
-Neil Diamond
-Greatest Hits
-NeilDiamond.png
-3
-Crackling Rose
-boing_x.wav
-Soolaimon
-06-Soolaimon.wav
-Sweet Caroline
-20-Sweet_Caroline.wav
-The Platters
-Greatest Hits
-ThePlatters.png
-2
-Twilight Time
-01-Twilight_Time.wav
-The Great Pretender
-10-The_Great_Pretender.wav
-Don McClean
-American Pie
-DonMcClean.png
-2
-American Pie
-01-American_Pie.wav
-Vincent
-02-Vincent.wav
-Carly Simon
-No Secrets
-CarlySimon.png
-3
-The Carter Family
-02-The_Carter_Family.wav
-Your So Vain
-03-Youre_So_Vain.wav
-Embrace Me You Child
-06-Embrace_Me_You_Child.wav
+U2
+All that you can't leave behind
+U2.png
+5
+Beautiful Day
+Beautiful Day.mp3
+Stuck In A Moment You Can't get out of
+Stuck In A Moment You Cant Get Out Of.mp3
+Elevation
+Elevation.mp3
+Walk On 
+Walk On.mp3
+Kite 
+Kite.mp3
+Oasis
+(What's the Story) Morning Glory?
+oasis.png
+4
+Hello
+Hello.mp3
+Roll With It
+Roll With It.mp3
+Don't Look Back In Anger
+Dont Look Back In Anger.mp3
+Champagne Supernova
+Champagne Supernova.mp3
+Adele
+Adele 19
+adele.png
+5
+Best for Last
+Best for Last.mp3
+Chasing Pavements 
+Chasing Pavements.mp3
+First Love 
+First Love.mp3
+Make You Feel My Love 
+Make You Feel My Love.mp3 
+Hometown Glory 
+Hometown Glory.mp3
+ColdPlay
+A Rush of Blood to the Head
+coldplay.png
+5
+A Rush Of Blood To The Head
+A Rush Of Blood To The Head.mp3
+A Whisper
+A Whisper.mp3
+Clocks
+Clocks.mp3
+The Scientist 
+The Scientist.mp3
+Warning Sign 
+Warning Sign.mp3
