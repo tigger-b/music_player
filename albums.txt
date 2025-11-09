@@ -1,6 +1,6 @@
-4
-U2
+8
 All that you can't leave behind
+U2
 U2.png
 5
 Beautiful Day
@@ -13,8 +13,8 @@ Walk On
 Walk On.mp3
 Kite 
 Kite.mp3
-Oasis
 (What's the Story) Morning Glory?
+Oasis
 oasis.png
 4
 Hello
@@ -25,8 +25,8 @@ Don't Look Back In Anger
 Dont Look Back In Anger.mp3
 Champagne Supernova
 Champagne Supernova.mp3
-Adele
 Adele 19
+Adele
 adele.png
 5
 Best for Last
@@ -39,8 +39,8 @@ Make You Feel My Love
 Make You Feel My Love.mp3 
 Hometown Glory 
 Hometown Glory.mp3
-ColdPlay
 A Rush of Blood to the Head
+ColdPlay
 coldplay.png
 5
 A Rush Of Blood To The Head
@@ -53,3 +53,53 @@ The Scientist
 The Scientist.mp3
 Warning Sign 
 Warning Sign.mp3
+Brightly or Darkly 
+Nathan Gourley and Laura Fedderson
+bd.png
+5
+An Spailpn Fnach Step It Out Joe
+bd1.mp3
+From Galway to Dublin The Harp and Shamrock
+bd2.mp3
+Maeves Dinny Obriens Carraign Ruadh
+bd3.mp3
+Pride of Roxbury Paddy Joe Tighes The Road to Town
+bd4.mp3
+Sir George MacKenzie Monaghan Twig Sen Sa Cheo
+bd5.mp3
+The Nervous Man
+Mícheál Ó Raghallaigh
+nervousman.png
+5
+Lone Shankyle
+nm1.mp3
+Quilty Shore / Grogans / Kittys Rambles
+nm2.mp3
+Stony Steps / Hunt in the Bog / Merry Dogs of Easter
+nm3.mp3
+Sport / Hawthorn Hedge
+nm4.mp3
+Dogs Among the Bushes / Barrowburn Reel / Whynnes No 3 / Sonnys Return
+nm5.mp3
+The Godfather 
+Brian Rooney 
+godfather.png 
+5 
+Paddy from Portlaw / Whistler At the Wake
+gf1.mp3 
+Westering Home Bold Thady Quill 
+gf2.mp3
+The Chancellor / The Poppy Leaf 
+gf3.mp3
+Tie the Bonnet / Galway Rambler 
+gf4.mp3
+Tom Steele's / Come West Along the Road (feat. Frankie Gavin)
+gf5.mp3
+No Coming No Going
+Tulua 
+Tulua.png
+2
+The Cabin Reels 
+The Cabin Reels.mp3
+The Minor Set 
+The Minor Set.mp3
