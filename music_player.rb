@@ -68,32 +68,49 @@ class MusicPlayer < Gosu::Window
     @small_font = Gosu::Font.new(16)
 
     @stop_button_hover = false
-    @stop_button_x = 20
+    @stop_button_x = 500
     @stop_button_y = @button_y
     @stop_button_width = 120
     @stop_button_height = 35
 
     @is_paused = false
+    #@current_track_index = nil
+    @track_history = []
+    @track_history_index = nil
 
-    @track_button_width = 150
+    @track_button_width = 120
     @track_button_height = 35
 
-    @prev_track_x = 160
-    @next_track_x = 330
+    @prev_track_x = 630
+    @next_track_x = 760
     @track_button_y = @button_y
 
     @prev_track_hover = false
     @next_track_hover = false
 
+    @playlist = []
+    @show_playlist = false
 
-    #images
-    @artworks = albums.map do |a|
+    @playlist_button_x = 890
+    @playlist_button_y = @button_y
+    @playlist_button_width = 120
+    @playlist_button_height = 35
+
+    @playlist_action_y = 265
+    @playlist_action_width = 110
+    @playlist_action_height = 35
+
+    @add_song_hover = false
+    @remove_song_hover = false
+
+# Create artworks for ALL albums including playlist
+    @artworks = @albums.map do |a|
       path = File.join(__dir__, "media", a.artwork)
       if File.exist?(path)
         Gosu::Image.new(path)
       else
-        #image not found case
-        Gosu::Image.from_blob(@album_size, @album_size, "\xff\x00\x00\x00" * @album_size * @album_size)
+    # fallback image if artwork not found
+        Gosu::Image.from_blob(@album_size, @album_size, "\x1e\x1e\x1e\xff" * @album_size * @album_size)
       end
     end
 
@@ -132,17 +149,21 @@ class MusicPlayer < Gosu::Window
         end
       else
       # Draw empty placeholder if needed
-        Gosu.draw_rect(x, y, @album_size, @album_size, Gosu::Color::GRAY, ZOrder::MIDDLE)
+        Gosu.draw_rect(x, y, @album_size, @album_size, Gosu::Color.new(30, 30, 30), ZOrder::MIDDLE)
       end
     end
   end
+
   def draw_tracks
     return unless @selected_album_index
 
+  # Use the dynamic playlist album if selected
     album = @albums[@selected_album_index]
+# for the playlist album, make sure it uses @playlist dynamically
+    album.tracks = @playlist if album.title == "Playlist"
+
     x_start = 500
     y_start = 20
-
     @font.draw_text("Tracks from #{album.title}, by #{album.artist}", x_start, y_start, ZOrder::TOP, 1.2, 1.2, Gosu::Color::WHITE)
 
     album.tracks.each_with_index do |track, i|
@@ -151,10 +172,9 @@ class MusicPlayer < Gosu::Window
       @small_font.draw_text("#{i + 1}. #{track.name}", x_start, y, ZOrder::TOP, 1, 1, color)
     end
   end
-
   def draw_now_playing
     message = @now_playing.empty? ? "No tracks selected" : "Now Playing: #{@now_playing}"
-    @font.draw_text(message, 20, @win_height - 100, ZOrder::TOP, 1, 1, Gosu::Color::WHITE)
+    @font.draw_text(message,  500, @win_height - 100, ZOrder::TOP, 1, 1, Gosu::Color::WHITE)
 
   # Pause/Play button
     color = @stop_button_hover ? Gosu::Color::RED : Gosu::Color::WHITE
@@ -167,35 +187,55 @@ class MusicPlayer < Gosu::Window
     prev_color = @prev_track_hover ? Gosu::Color::RED : Gosu::Color::WHITE
     prev_text_color = @prev_track_hover ? Gosu::Color::WHITE : Gosu::Color::BLACK
     Gosu.draw_rect(@prev_track_x, @track_button_y, @track_button_width, @track_button_height, prev_color, ZOrder::MIDDLE)
-    @font.draw_text("Previous Track", @prev_track_x + 15, @track_button_y + 10, ZOrder::TOP, 1, 1, prev_text_color)
+    @font.draw_text("Previous", @prev_track_x + 15, @track_button_y + 10, ZOrder::TOP, 1, 1, prev_text_color)
 
 # Next Track Button
     next_color = @next_track_hover ? Gosu::Color::RED : Gosu::Color::WHITE
     next_text_color = @next_track_hover ? Gosu::Color::WHITE : Gosu::Color::BLACK
     Gosu.draw_rect(@next_track_x, @track_button_y, @track_button_width, @track_button_height, next_color, ZOrder::MIDDLE)
-    @font.draw_text("Next Track", @next_track_x + 15, @track_button_y + 10, ZOrder::TOP, 1, 1, next_text_color)
+    @font.draw_text("Next", @next_track_x + 15, @track_button_y + 10, ZOrder::TOP, 1, 1, next_text_color)
     
+    if @show_playlist
+  # Playlist title
+      @font.draw_text("Playlist", 500, 268, ZOrder::TOP, 1, 1, Gosu::Color::WHITE)
+
+  # Playlist tracks
+      @playlist.each_with_index do |track, i|
+        @small_font.draw_text("#{i + 1}. #{track.name}", 500, 305 + i * 30, ZOrder::TOP, 1, 1, Gosu::Color::WHITE)
+      end
+    end
+
   end
 
   def draw_page_buttons
     button_y = @button_y
-    prev_x = @win_width - 240
-    next_x = @win_width - 120
+    prev_x = @win_width - 960
+    next_x = @win_width - 850
     width = 100
     height = 35
 
   #previous button
     prev_color = @prev_hover ? Gosu::Color::RED : Gosu::Color::WHITE
     Gosu.draw_rect(prev_x, button_y, width, height, prev_color, ZOrder::MIDDLE)
-    @font.draw_text("Prev", prev_x + 15, button_y + 8, ZOrder::TOP, 1, 1, Gosu::Color::BLACK)
+    @font.draw_text("<-----", prev_x + 15, button_y + 8, ZOrder::TOP, 1, 1, Gosu::Color::BLACK)
 
   # next button
     next_color = @next_hover ? Gosu::Color::RED : Gosu::Color::WHITE
     Gosu.draw_rect(next_x, button_y, width, height, next_color, ZOrder::MIDDLE)
-    @font.draw_text("Next", next_x + 20, button_y + 8, ZOrder::TOP, 1, 1, Gosu::Color::BLACK)
+    @font.draw_text("----->", next_x + 20, button_y + 8, ZOrder::TOP, 1, 1, Gosu::Color::BLACK)
+
+  #playlist button 
+  playlist_x = @playlist_button_x
+  playlist_y = @playlist_button_y
+  playlist_width = @playlist_button_width
+  playlist_height = @playlist_button_height
+
+  playlist_color = @playlist_button_hover ? Gosu::Color::RED : Gosu::Color::WHITE
+  Gosu.draw_rect(playlist_x, playlist_y, playlist_width, playlist_height, playlist_color, ZOrder::MIDDLE)
+  @font.draw_text("Playlist", playlist_x + 10, playlist_y + 8, ZOrder::TOP, 1, 1, Gosu::Color::BLACK)
 
   #page info
-    @small_font.draw_text("Page #{@current_page + 1} / #{@total_pages}", @win_width - 360, button_y + 10, ZOrder::TOP, 1, 1, Gosu::Color::WHITE)
+    @small_font.draw_text("Page #{@current_page + 1} / #{@total_pages}", @win_width - 900, @win_height - 100, ZOrder::TOP, 1, 1, Gosu::Color::WHITE)
   end
   
   def needs_cursor?; true; end
@@ -229,22 +269,50 @@ class MusicPlayer < Gosu::Window
     @next_track_hover = mouse_x.between?(@next_track_x, @next_track_x + @track_button_width) &&
       mouse_y.between?(@track_button_y, @track_button_y + @track_button_height)
 
-    @prev_hover = mouse_x.between?(@win_width - 240, @win_width - 140) &&
+    @prev_hover = mouse_x.between?(@win_width - 960, @win_width - 860) &&
               mouse_y.between?(@button_y, @button_y + 35)
 
-    @next_hover = mouse_x.between?(@win_width - 120, @win_width - 20) &&
+    @next_hover = mouse_x.between?(@win_width - 850, @win_width - 750) &&
               mouse_y.between?(@button_y, @button_y + 35)
+
+    @playlist_button_hover = mouse_x.between?(@playlist_button_x, @playlist_button_x + @playlist_button_width) &&
+      mouse_y.between?(@playlist_button_y, @playlist_button_y + @playlist_button_height)
+  end
+
+
+  def on_track_click(track)
+    @track_history << track
+    @track_history_index = @track_history.length - 1
+    @now_playing = track.name
+    play_track(track)
   end
 
   def button_down(id)
     return unless id == Gosu::MsLeft
 
-  # Stop button
+    if @prev_track_hover && @track_history_index && @track_history_index > 0
+      @track_history_index -= 1
+      track = @track_history[@track_history_index]
+      @now_playing = track.name
+      play_track(track)
+      return
+    end
+
+# Next track
+    if @next_track_hover && @track_history_index && @track_history_index < @track_history.length - 1
+      @track_history_index += 1
+      track = @track_history[@track_history_index]
+      @now_playing = track.name
+      play_track(track)
+      return
+    end
+
+  # Stop / Play button
     if @stop_button_hover
       if @current_song
         if @is_paused
-        @current_song.play(false)
-        @is_paused = false
+          @current_song.play(false)
+          @is_paused = false
         else
           @current_song.pause
           @is_paused = true
@@ -259,6 +327,11 @@ class MusicPlayer < Gosu::Window
       return
     elsif @next_hover && @current_page < @total_pages - 1
       @current_page += 1
+    return
+    end
+
+    if @playlist_button_hover
+      @show_playlist = !@show_playlist
       return
     end
 
@@ -278,43 +351,51 @@ class MusicPlayer < Gosu::Window
         return
       end
     end
+    
+  # Track click (only if an album is selected)
+    if @selected_album_index
+      album = @albums[@selected_album_index]
+      x_start = 500
+      y_start = 60
 
-    return unless @selected_album_index
-    album = @albums[@selected_album_index]
-    x_start = 500
-    y_start = 60
-    album.tracks.each_with_index do |track, i|
-      y = y_start + i * 30
-      if mouse_x.between?(x_start, x_start + 300) && mouse_y.between?(y, y + 20)
-        @now_playing = track.name
-        play_track(track)
-        return
+      album.tracks.each_with_index do |track, i|
+        y = y_start + i * 30
+        if mouse_x.between?(x_start, x_start + 300) && mouse_y.between?(y, y + 20)
+          if @show_playlist
+        # Playlist mode: add to playlist with max 6 tracks
+            if @playlist.include?(track)
+              puts "'#{track.name}' is already in the playlist."
+            elsif @playlist.size >= 6
+              puts "Playlist is full! Maximum 6 tracks allowed."
+            else
+              @playlist << track
+              puts "Added '#{track.name}' to playlist."
+            end
+          else
+        # Normal mode: play track
+            on_track_click(track)
+          end
+          return
+        end
       end
     end
 
-    if @prev_track_hover && @selected_album_index
-      album = @albums[@selected_album_index]
-      current_index = album.tracks.index { |t| t.name == @now_playing }
-      if current_index && current_index > 0
-        new_track = album.tracks[current_index - 1]
-        @now_playing = new_track.name
-        play_track(new_track)
+# Remove from playlist
+    if @show_playlist
+      playlist_x = 500
+      playlist_y = 305
+      track_height = 30
+      @playlist.each_with_index do |track, i|
+        y = playlist_y + i * track_height
+        if mouse_x.between?(playlist_x, playlist_x + 300) && mouse_y.between?(y, y + track_height)
+          @playlist.delete(track)
+          return
+        end
       end
-      return
-    end
-
-# Next Track
-    if @next_track_hover && @selected_album_index
-      album = @albums[@selected_album_index]
-      current_index = album.tracks.index { |t| t.name == @now_playing }
-      if current_index && current_index < album.tracks.length - 1
-        new_track = album.tracks[current_index + 1]
-        @now_playing = new_track.name
-        play_track(new_track)
-      end
-      return
     end
   end
+
+ 
 
   def play_track(track)
     @is_paused = false
@@ -327,6 +408,7 @@ class MusicPlayer < Gosu::Window
     @current_song = Gosu::Song.new(track.file)
     @current_song.play(false)
   end
+
   def stop_music
     if @current_song
       @current_song.stop

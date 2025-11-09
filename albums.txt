@@ -1,4 +1,4 @@
-8
+9 
 All that you can't leave behind
 U2
 U2.png
@@ -103,3 +103,6 @@ The Cabin Reels
 The Cabin Reels.mp3
 The Minor Set 
 The Minor Set.mp3
+Playlist 
+Various Artists
+playlist.png
