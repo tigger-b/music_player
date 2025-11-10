@@ -13,6 +13,8 @@ Walk On
 Walk On.mp3
 Kite 
 Kite.mp3
+2000
+Rock
 (What's the Story) Morning Glory?
 Oasis
 oasis.png
@@ -25,6 +27,8 @@ Don't Look Back In Anger
 Dont Look Back In Anger.mp3
 Champagne Supernova
 Champagne Supernova.mp3
+1995
+Rock
 Adele 19
 Adele
 adele.png
@@ -39,6 +43,8 @@ Make You Feel My Love
 Make You Feel My Love.mp3 
 Hometown Glory 
 Hometown Glory.mp3
+2008
+Soul
 A Rush of Blood to the Head
 ColdPlay
 coldplay.png
@@ -53,6 +59,8 @@ The Scientist
 The Scientist.mp3
 Warning Sign 
 Warning Sign.mp3
+2002 
+Alternative Rock
 Brightly or Darkly 
 Nathan Gourley and Laura Fedderson
 bd.png
@@ -67,6 +75,8 @@ Pride of Roxbury Paddy Joe Tighes The Road to Town
 bd4.mp3
 Sir George MacKenzie Monaghan Twig Sen Sa Cheo
 bd5.mp3
+2022
+Trad
 The Nervous Man
 Mícheál Ó Raghallaigh
 nervousman.png
@@ -79,8 +89,10 @@ Stony Steps / Hunt in the Bog / Merry Dogs of Easter
 nm3.mp3
 Sport / Hawthorn Hedge
 nm4.mp3
-Dogs Among the Bushes / Barrowburn Reel / Whynnes No 3 / Sonnys Return
+Dogs Among the Bushes / Barrowburn Reel 
 nm5.mp3
+2001
+Trad
 The Godfather 
 Brian Rooney 
 godfather.png 
@@ -93,8 +105,10 @@ The Chancellor / The Poppy Leaf
 gf3.mp3
 Tie the Bonnet / Galway Rambler 
 gf4.mp3
-Tom Steele's / Come West Along the Road (feat. Frankie Gavin)
+Tom Steele's / Come West Along the Road
 gf5.mp3
+1999
+Trad
 No Coming No Going
 Tulua 
 Tulua.png
@@ -103,6 +117,11 @@ The Cabin Reels
 The Cabin Reels.mp3
 The Minor Set 
 The Minor Set.mp3
+2023
+Trad
 Playlist 
 Various Artists
 playlist.png
+
+0000
+Various 
